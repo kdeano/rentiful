@@ -38,12 +38,18 @@ out/
 
 # Server specific
 server/.env
+server/.env.local
+server/.env.development
+server/.env.production
 server/node_modules/
 server/.next/
 server/out/
 
 # Client specific
 client/.env
+client/.env.local
+client/.env.development
+client/.env.production
 client/node_modules/
 client/.next/
 client/out/
