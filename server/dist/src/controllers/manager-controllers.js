@@ -26,7 +26,7 @@ const getManager = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         }
     }
     catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: `Error getting manager: ${error}` });
     }
 });
 exports.getManager = getManager;
@@ -44,7 +44,7 @@ const createManager = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.status(201).json(manager);
     }
     catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: `Error creating manager: ${error}` });
     }
 });
 exports.createManager = createManager;
@@ -63,7 +63,7 @@ const updateManager = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.json(updateManager);
     }
     catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: `Error updating manager: ${error}` });
     }
 });
 exports.updateManager = updateManager;

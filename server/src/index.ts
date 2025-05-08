@@ -5,8 +5,9 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import { AuthMiddleware } from "./middleware/authMiddleware";
-import tenantRoutes from "./routes/tenantRoutes";
-import managerRoutes from "./routes/managerRoutes";
+import tenantRoutes from "./routes/tenant-routes";
+import managerRoutes from "./routes/manager-routes";
+import propertyRoutes from "./routes/property-routes";
 
 /* CONFIGURATIONS */
 dotenv.config();
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
     res.send("This is home route");
 });
 
+app.use("/properties", propertyRoutes);
 app.use("/tenants", AuthMiddleware(["tenant"]), tenantRoutes);
 app.use("/managers", AuthMiddleware(["manager"]), managerRoutes);
 

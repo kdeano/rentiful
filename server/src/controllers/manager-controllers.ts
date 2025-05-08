@@ -3,33 +3,33 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export const getTenant = async (req: Request, res: Response): Promise<void> => {
+export const getManager = async (
+    req: Request,
+    res: Response
+): Promise<void> => {
     try {
         const { cognitoId } = req.params;
-        const tenant = await prisma.tenant.findUnique({
+        const manager = await prisma.manager.findUnique({
             where: { cognitoId },
-            include: {
-                favorites: true,
-            },
         });
 
-        if (tenant) {
-            res.json(tenant);
+        if (manager) {
+            res.json(manager);
         } else {
-            res.status(404).json({ message: "Tenant not found" });
+            res.status(404).json({ message: "Manager not found" });
         }
     } catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: `Error getting manager: ${error}` });
     }
 };
 
-export const createTenant = async (
+export const createManager = async (
     req: Request,
     res: Response
 ): Promise<void> => {
     try {
         const { cognitoId, name, email, phoneNumber } = req.body;
-        const tenant = await prisma.tenant.create({
+        const manager = await prisma.manager.create({
             data: {
                 cognitoId,
                 name,
@@ -38,20 +38,20 @@ export const createTenant = async (
             },
         });
 
-        res.status(201).json(tenant);
+        res.status(201).json(manager);
     } catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: `Error creating manager: ${error}` });
     }
 };
 
-export const updateTenant = async (
+export const updateManager = async (
     req: Request,
     res: Response
 ): Promise<void> => {
     try {
         const { cognitoId } = req.params;
         const { name, email, phoneNumber } = req.body;
-        const updateTenant = await prisma.tenant.update({
+        const updateManager = await prisma.manager.update({
             where: { cognitoId },
             data: {
                 name,
@@ -60,8 +60,8 @@ export const updateTenant = async (
             },
         });
 
-        res.json(updateTenant);
+        res.json(updateManager);
     } catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: `Error updating manager: ${error}` });
     }
 };

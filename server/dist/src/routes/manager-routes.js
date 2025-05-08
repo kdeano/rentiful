@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const managerControllers_1 = require("../controllers/managerControllers");
+const manager_controllers_1 = require("../controllers/manager-controllers");
 const router = express_1.default.Router();
-router.get("/:cognitoId", managerControllers_1.getManager);
-router.put("/:cognitoId", managerControllers_1.updateManager);
-router.post("/", managerControllers_1.createManager);
+router.get("/:cognitoId", manager_controllers_1.getManager);
+router.put("/:cognitoId", manager_controllers_1.updateManager);
+router.post("/", manager_controllers_1.createManager);
 exports.default = router;

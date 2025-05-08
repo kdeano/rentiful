@@ -29,7 +29,7 @@ const getTenant = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
     }
     catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: `Error getting tenant: ${error}` });
     }
 });
 exports.getTenant = getTenant;
@@ -47,7 +47,7 @@ const createTenant = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         res.status(201).json(tenant);
     }
     catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: `Error creating tenant: ${error}` });
     }
 });
 exports.createTenant = createTenant;
@@ -66,7 +66,7 @@ const updateTenant = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         res.json(updateTenant);
     }
     catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: `Error updating tenant: ${error}` });
     }
 });
 exports.updateTenant = updateTenant;

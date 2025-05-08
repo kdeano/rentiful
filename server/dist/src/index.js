@@ -10,8 +10,9 @@ const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 const authMiddleware_1 = require("./middleware/authMiddleware");
-const tenantRoutes_1 = __importDefault(require("./routes/tenantRoutes"));
-const managerRoutes_1 = __importDefault(require("./routes/managerRoutes"));
+const tenant_routes_1 = __importDefault(require("./routes/tenant-routes"));
+const manager_routes_1 = __importDefault(require("./routes/manager-routes"));
+const property_routes_1 = __importDefault(require("./routes/property-routes"));
 /* CONFIGURATIONS */
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -26,8 +27,9 @@ app.use((0, cors_1.default)());
 app.get("/", (req, res) => {
     res.send("This is home route");
 });
-app.use("/tenants", (0, authMiddleware_1.AuthMiddleware)(["tenant"]), tenantRoutes_1.default);
-app.use("/managers", (0, authMiddleware_1.AuthMiddleware)(["manager"]), managerRoutes_1.default);
+app.use("/properties", property_routes_1.default);
+app.use("/tenants", (0, authMiddleware_1.AuthMiddleware)(["tenant"]), tenant_routes_1.default);
+app.use("/managers", (0, authMiddleware_1.AuthMiddleware)(["manager"]), manager_routes_1.default);
 /* SERVER */
 const port = Number(process.env.PORT) || 3002;
 app.listen(port, "0.0.0.0", () => {
