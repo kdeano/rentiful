@@ -8,5 +8,6 @@ const tenant_controllers_1 = require("../controllers/tenant-controllers");
 const router = express_1.default.Router();
 router.get("/:cognitoId", tenant_controllers_1.getTenant);
 router.put("/:cognitoId", tenant_controllers_1.updateTenant);
+router.get("/:cognitoId/current-residences", tenant_controllers_1.getCurrentResidences);
 router.post("/", tenant_controllers_1.createTenant);
 exports.default = router;
